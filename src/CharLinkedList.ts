@@ -1,14 +1,14 @@
 import { Node } from "./Node";
 import { Sorter } from "./Sorter";
 
-export class LinkedList extends Sorter {
-	head: Node<number> | null;
+export class CharLinkedList extends Sorter {
+	head: Node<string> | null;
 	constructor() {
 		super();
 		this.head = null;
 	}
-	add(value: number): void {
-		const node = new Node<number>(value);
+	add(value: string): void {
+		const node = new Node<string>(value);
 		if (!this.head) {
 			this.head = node;
 			return;
@@ -19,13 +19,13 @@ export class LinkedList extends Sorter {
 		}
 		tail.next = node;
 	}
-	at(index: number): Node<number> {
+	at(index: number): Node<string> {
 		if (!this.head) {
 			throw new Error("Index out of bounds.");
 		}
 
 		let counter = 0;
-		let node: Node<number> | null = this.head;
+		let node: Node<string> | null = this.head;
 		while (node) {
 			if (counter === index) {
 				return node;
@@ -39,8 +39,8 @@ export class LinkedList extends Sorter {
 		if (!this.head) {
 			return;
 		}
-		let list: number[] = [];
-		let node: Node<number> | null = this.head;
+		let list: string[] = [];
+		let node: Node<string> | null = this.head;
 		while (node) {
 			list.push(node.data);
 			node = node.next;
@@ -64,7 +64,10 @@ export class LinkedList extends Sorter {
 		if (!this.head) {
 			throw new Error("List is empty");
 		}
-		return this.at(leftIndex).data > this.at(rightIndex).data;
+		return (
+			this.at(leftIndex).data.toLowerCase() >
+			this.at(rightIndex).data.toLowerCase()
+		);
 	}
 	swap(leftIndex: number, rightIndex: number): void {
 		const leftNode = this.at(leftIndex);

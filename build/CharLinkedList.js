@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LinkedList = void 0;
+exports.CharLinkedList = void 0;
 const Node_1 = require("./Node");
 const Sorter_1 = require("./Sorter");
-class LinkedList extends Sorter_1.Sorter {
+class CharLinkedList extends Sorter_1.Sorter {
     constructor() {
         super();
         this.head = null;
@@ -63,7 +63,8 @@ class LinkedList extends Sorter_1.Sorter {
         if (!this.head) {
             throw new Error("List is empty");
         }
-        return this.at(leftIndex).data > this.at(rightIndex).data;
+        return (this.at(leftIndex).data.toLowerCase() >
+            this.at(rightIndex).data.toLowerCase());
     }
     swap(leftIndex, rightIndex) {
         const leftNode = this.at(leftIndex);
@@ -73,4 +74,4 @@ class LinkedList extends Sorter_1.Sorter {
         rightNode.data = leftHand;
     }
 }
-exports.LinkedList = LinkedList;
+exports.CharLinkedList = CharLinkedList;
